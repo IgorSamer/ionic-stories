@@ -1,0 +1,36 @@
+page-home {
+    ion-scroll {
+        height: 100px;
+
+        .story {
+            position: relative;
+            display: inline-block;
+            color: #999;
+            margin-left: 10px;
+            padding: 2px;
+
+            &.unseen {
+                color: #000;
+
+                img {
+                    box-shadow: 0px 0px 0px 2px #f00;
+                }
+            }
+
+            img {
+                width: 55px;
+                height: 55px;
+                border-radius: 50%;
+                border: 2px solid #fff;
+                box-shadow: 0px 0px 0px 2px #999;
+            }
+
+            span {
+                max-width: 55px;
+                font-size: 12px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+}

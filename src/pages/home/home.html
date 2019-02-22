@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Stories
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-scroll scrollX="true" text-nowrap margin-top>
+    <div class="story" text-center *ngFor="let story of stories; let index = index" [ngClass]="!story.seen ? 'unseen' : ''" (click)="openStoryViewer(index)">
+      <img [src]="story.userPicture" [alt]="'Story de' + story.userName">
+
+      <span class="block">{{ story.userName }}</span>
+    </div>
+  </ion-scroll>
+</ion-content>

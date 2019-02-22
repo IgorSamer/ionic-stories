@@ -1,0 +1,63 @@
+<ion-content (press)="pauseStory()" (pressup)="playStory()" (panstart)="pauseStory()" (panend)="playStory()" swipe-vertical (onSwipeUp)="onSwipeUp()" (onSwipeDown)="closeStoryViewer()">
+  <ion-slides (ionSlideDidChange)="setStorySeen()">
+    <ion-slide *ngFor="let story of stories; let indexStory = index" [ngClass]="isPaused || isLoading(indexStory) || isWaiting ? 'isPaused' : ''" (tap)="changeStoryItem($event, story)">
+      <ion-grid class="pagination">
+        <ion-row>
+          <ion-col *ngFor="let items of story.items; let index = index">
+            <div class="seen" [hidden]="index >= story.currentItem"></div>
+            <div #progress class="progress" *ngIf="story.currentItem === index && slides.getActiveIndex() === indexStory" [ngStyle]="{'animation-duration': story.items[story.currentItem].duration + 's'}"></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div class="header" padding>
+        <div>
+          <img [src]="story.userPicture" [alt]="'Story de' + story.userName">
+
+          <div class="info" text-left>
+            <span>{{ story.userName }}</span>
+            <span>{{ story.items[story.currentItem].date }}</span>
+          </div>
+        </div>
+
+        <div>
+          <button ion-button clear icon-only no-margin no-padding (tap)="closeStoryViewer()">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="footer">
+        <ion-grid>
+          <ion-row>
+            <ion-col text-left>
+              <button ion-button clear icon-left no-padding *ngIf="story.userId === userId">
+                <ion-icon name="eye"></ion-icon> {{ story.items[story.currentItem].views }}
+              </button>
+            </ion-col>
+
+            <ion-col col-8 *ngIf="story.userId != userId">
+              <ion-item no-lines>
+                <ion-input type="text" placeholder="Responder story" (ionFocus)="pauseStory()" (ionBlur)="playStory()"></ion-input>
+              </ion-item>
+            </ion-col>
+
+            <ion-col text-right>
+              <button ion-button clear icon-right no-padding *ngIf="story.userId === userId">
+                <ion-icon name="more"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <div class="item" *ngFor="let item of story.items; let index = index" [hidden]="story.currentItem != index">
+        <ion-spinner [hidden]="item.type == 0 || (!isLoading(indexStory) && !isWaiting)"></ion-spinner>
+
+        <img [src]="item.media" [alt]="'Story de' + story.userName" [hidden]="item.type != 0">
+
+        <video #video webkit-playsinline playsinline preload="metadata" [src]="item.media" *ngIf="item.type == 1 && story.currentItem === index && slides.getActiveIndex() === indexStory"></video>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
