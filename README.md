@@ -13,4 +13,4 @@ Part 1: [https://youtu.be/hzegjP1Lk8g](https://youtu.be/hzegjP1Lk8g)
 
 Part 2: [https://youtu.be/tkbS2O9mrlY](https://youtu.be/tkbS2O9mrlY)
 
-Part 3:
+Part 3: [https://youtu.be/T65UCcIxe8A](https://youtu.be/T65UCcIxe8A)
