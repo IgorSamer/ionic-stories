@@ -1,4 +1,4 @@
-# ionic-3-stories
+# ionic-stories
 An Ionic 3 project with Stories feature
 
 ![Beevos Stories](https://j.gifs.com/VAmrB9.gif)
